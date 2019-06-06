@@ -1,0 +1,27 @@
+#root
+{
+
+}
+html,body
+{
+    height: 100%;
+}
+body
+{
+    background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.deleteButton
+{
+    position: absolute;
+    right: 0;
+    top:0;
+    cursor: pointer;
+    color:tomato;
+    
+}
+.deleteButton:hover
+{
+    color:red;
+}
