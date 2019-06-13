@@ -19,14 +19,14 @@ class KanbanCardActionButton extends React.Component {
 
 
     renderRemoveButton = () => {
-        const { list } = this.props;
         return (
             <div 
             onClick ={this.deleteCard}
             style={{
                 position: "absolute",
-                top: "0px",
-                right: "0px"
+                top: "2px",
+                right: "2px",
+                cursor:"pointer"
             }}
             > 
                 <Icon>clear</Icon>

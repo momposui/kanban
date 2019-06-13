@@ -10,7 +10,10 @@ body
 {
     background-image: url('../images/bg.jpg');
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
+    height: 90vh;
 }
 .deleteButton
 {
@@ -20,6 +23,10 @@ body
     cursor: pointer;
     color:tomato;
     
+}
+.pt-60
+{
+    padding-top: 60px;
 }
 .deleteButton:hover
 {

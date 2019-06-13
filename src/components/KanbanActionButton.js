@@ -12,7 +12,9 @@ class KanbanActionButton extends React.Component {
 
     state = {
         formOpen: false,
-        text:""
+        text:"",
+        color:"white",
+        date: ''
     };
     
     openForm = () => {
@@ -40,6 +42,16 @@ class KanbanActionButton extends React.Component {
             text: e.target.value
         });
     };
+    handleColorChange= (e) => {
+        this.setState({
+            color: e.target.value
+        });
+    };
+    handleDateChange= (e) => {
+        this.setState({
+            date: e.target.value
+        });
+    };
     handleAddList = () => {
         const { dispatch } = this.props;
         const { text } = this.state;
@@ -54,13 +66,14 @@ class KanbanActionButton extends React.Component {
     };
     handleAddCard = () => {
         const { dispatch,listID } = this.props;
-        const { text } = this.state;
+        const { text,color,date } = this.state;
 
         if (text) {
             this.setState({
-                text: ""
+                text: "",
+                color: "white"
             });
-            dispatch(addCard(listID, text))
+            dispatch(addCard(listID, text,color,date))
         }
     }
 
@@ -104,9 +117,10 @@ class KanbanActionButton extends React.Component {
             onClick ={this.deleteList}
             style={{
                 position: "absolute",
-                top: "0px",
-                right: "0px",
+                top: "3px",
+                right: "3px",
                 display: disp,
+                cursor: "pointer",
             }}
             > 
                 <Icon>clear</Icon>
@@ -137,7 +151,6 @@ class KanbanActionButton extends React.Component {
                     <Textarea
                     placeholder={placeholder}
                     autoFocus
-                    onBlur={this.closeForm}
                     value={this.state.text}
                     onChange={this.handleInputChange} 
                     style={{
@@ -148,6 +161,19 @@ class KanbanActionButton extends React.Component {
                         border:"none"
                     }}            
                     />
+                    <div  className={"my-2 " + (list ? 'd-none' : '')}>
+                        <hr/>
+                        <label className={'text-secondary'}>Цвет</label>
+                        <select onChange={this.handleColorChange} value={this.state.color}  className={'form-control'}>
+                            <option value={'white'}>Белый</option>
+                            <option value={'Salmon'}>Красный</option>
+                            <option  value={'PaleGreen'}>Зеленый</option>
+                            <option  value={'SteelBlue'}>Синий</option>
+                        </select>
+
+                        <label className={'text-secondary mt-2'}>Срок</label>
+                        <input onChange={this.handleDateChange} className={'form-control'} type={'date'} />
+                    </div>
                 </Card>
                 <div style={styles.formButtonGroup}>
                     <Button 

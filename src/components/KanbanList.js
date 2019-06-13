@@ -3,12 +3,11 @@ import KanbanCard from "./KanbanCard";
 import KanbanActionButton from "./KanbanActionButton";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { Button } from "@material-ui/core";
 
 const ListContainer = styled.div`
   background-color: #dfe3e6;
   border-radius: 7px;
-  width: 300px;
+  min-width: 300px;
   padding: 8px;
   height: 100%;
   margin-right: 8px;
@@ -18,7 +17,8 @@ const ListContainer = styled.div`
 
 const KanbanList = ({ title, cards, listID, index }) => {
   return (
-    <Draggable draggableId={String(listID)} index={index}>
+
+      <Draggable className={'col'} draggableId={String(listID)} index={index}>
       {provided => (
            <ListContainer
                 {...provided.draggableProps}
@@ -28,7 +28,7 @@ const KanbanList = ({ title, cards, listID, index }) => {
         <Droppable droppableId={String(listID)}>
           {provided => (
            <div {...provided.droppableProps} ref={provided.innerRef}>
-              <h4>{title}</h4>
+              <h4>{title} <span className={'text-secondary'}>({cards.length}) </span></h4>
 
               {cards.map((card, index) => (
                 <KanbanCard
@@ -36,6 +36,8 @@ const KanbanList = ({ title, cards, listID, index }) => {
                   index={index}
                   text={card.text}
                   id={card.id}
+                  color={card.color}
+                  date={card.date}
                 />
               ))}
                {provided.placeholder}

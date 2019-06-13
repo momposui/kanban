@@ -12,11 +12,18 @@ const CardContainer = styled.div`
     position:relative;
 `;
 
+const Span = styled.span`
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin-right:5px;
+`;
 
 
-const KanbanCard = ({text, id, index }) => {
+
+const KanbanCard = ({text, id, index,color,date }) => {
     return (
-    <Draggable draggableId={String(id)} index= {index} > 
+    <Draggable draggableId={String(id)} index= {index} >
         {provided=> (
         <CardContainer
         
@@ -26,8 +33,9 @@ const KanbanCard = ({text, id, index }) => {
             >
 
         <Card> 
-        <CardContent>
+        <CardContent style={{background: color}} >
             <Typography gutterBottom>{text}</Typography>
+            <Span className={''}>{date}</Span>
             <KanbanCardActionButton cardId={id} />
 
         </CardContent>
@@ -38,7 +46,6 @@ const KanbanCard = ({text, id, index }) => {
         )}
 
      </Draggable>
-       
     );
 };
 

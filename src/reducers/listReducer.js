@@ -106,10 +106,11 @@ const listsReducer = (state = initialState, action) => {
         const newCard = {
             text: action.payload.text,
             id: `card-${cardID}`,
-            list_id: action.payload.listID
+            list_id: action.payload.listID,
+            color: action.payload.color,
+            date: action.payload.date
         };
         cardID = uuid();
-        
         const newState = state.map(list => {
             if(list.id === action.payload.listID) {
                 return {
@@ -120,6 +121,7 @@ const listsReducer = (state = initialState, action) => {
                 return list
             }
         });
+        //server post
         localStorage.setItem("kanban_list_array", JSON.stringify(newState));
         return newState;
         }
